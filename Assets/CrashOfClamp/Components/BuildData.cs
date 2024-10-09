@@ -5,9 +5,7 @@ public enum BuildState
 {
     Idle,
     Select,
-    Selected,
-    Build,
-    Building
+    Build
 }
 public struct BuildData : IComponentData
 {

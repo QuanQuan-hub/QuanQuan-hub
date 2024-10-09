@@ -5,7 +5,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 
-public class BuildSystem : ISystem
+public partial class BuildSystem : ISystem
 {
     [BurstCompile]
     public void OnCreate(ref SystemState state)
@@ -37,7 +37,7 @@ public class BuildSystem : ISystem
     }
 }
 
-public class BuilderSpawnerSystem : ISystem
+public partial class BuilderSpawnerSystem : ISystem
 {
 
     [BurstCompile]
@@ -56,17 +56,14 @@ public class BuilderSpawnerSystem : ISystem
         {
             if (buildData.ValueRO.BuildState == BuildState.Build)
             {
-
-            }
-            else if(buildData.ValueRO.BuildState == BuildState.Selected)
-            {
-                // Spawn the entity at the spawner location
-                Entity e = ecb.Instantiate(buildData.ValueRO.Prefab);
-                ecb.SetComponent(e, LocalTransform.FromPosition(position.Position));
+                //开始建造
+                //Entity e = ecb.Instantiate(buildData.ValueRO.Prefab);
+                //ecb.SetComponent(e, LocalTransform.FromPosition(position.Position));
+                buildData.ValueRW.BuildState = BuildState.Idle;
             }
             else if (buildData.ValueRO.BuildState == BuildState.Select)
             {
-
+                //跟着鼠标移动
             }
         }
     }
