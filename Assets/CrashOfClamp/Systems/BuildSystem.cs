@@ -5,7 +5,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 
-public partial class BuildSystem : ISystem
+public partial struct BuildSystem : ISystem
 {
     [BurstCompile]
     public void OnCreate(ref SystemState state)
@@ -37,7 +37,7 @@ public partial class BuildSystem : ISystem
     }
 }
 
-public partial class BuilderSpawnerSystem : ISystem
+public partial struct BuilderSpawnerSystem : ISystem
 {
 
     [BurstCompile]

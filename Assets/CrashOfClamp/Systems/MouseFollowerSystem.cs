@@ -4,7 +4,7 @@ using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
-public partial class MouseFollowerSystem : ISystem
+public partial struct MouseFollowerSystem : ISystem
 {
     [BurstCompile]
     public void OnCreate(ref SystemState state)
