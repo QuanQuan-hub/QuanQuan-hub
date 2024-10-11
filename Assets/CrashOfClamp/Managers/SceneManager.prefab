@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6527354386491831795
 MonoBehaviour:
@@ -44,3 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534e94ad7a55ca447bc9f2bed240ac48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  subSceneMap:
+  - name: MainScene
+    subScene:
+      Id:
+        GlobalId:
+          SceneObjectIdentifier0: 102900000
+          SceneObjectIdentifier1: 0
+          AssetGUID:
+            Value:
+              x: 1061201526
+              y: 1267122387
+              z: 2424627332
+              w: 3128317753
+          IdentifierType: 1
+        GenerationType: 4

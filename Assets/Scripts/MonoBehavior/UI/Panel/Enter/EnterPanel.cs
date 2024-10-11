@@ -23,7 +23,9 @@ public class EnterPanel : FGuiViewBehaviourV2<UI_EnterPanel>
     }
     private void OnClickStart()
     {
-        SceneManager.Instance.LoadScene("MainScene");
+        SceneManager.Instance.LoadScene("MainScene", true, ()=> {
+            UIManager.Instance.Open(UIDefine.GameMainPanel);
+        });
         CloseSelf();
     }
     public override void OnOpened()

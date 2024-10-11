@@ -8,12 +8,33 @@ using System;
 using Unity.Scenes;
 using Unity.Entities;
 using UnityEngine.SceneManagement;
+using Unity.Entities.Serialization;
 
 namespace GamePlay.Manager
 {
+    [Serializable]
+    public class SubSceneCfg
+    {
+        public string name;
+        public EntitySceneReference subScene;
+        public override bool Equals(object obj)
+        {
+            if (obj is string)
+            {
+                return obj as string == this.name;
+            }
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+    }
     public class SceneManager : MonoSigleton<SceneManager>
     {
-        private AsyncOperation _loadHandle;
+        public List<SubSceneCfg> subSceneMap = new();
+        private AsyncOperation _loadHandle = null;
         public void LoadScene(string scene, bool allowLoadEnter = false, Action onLoadComplete = null, SubScene subScene = null)
         {
             if (_loadHandle != null)
@@ -26,6 +47,16 @@ namespace GamePlay.Manager
             _loadHandle.completed += (handle) =>
             {
                 _loadHandle = null;
+                for (int i = 0; i < subSceneMap.Count; i++)
+                {
+                    if (subSceneMap[i].Equals(scene))
+                    {
+                        SceneSystem.LoadSceneAsync(
+                            World.DefaultGameObjectInjectionWorld.Unmanaged,
+                            subSceneMap[i].subScene);
+                        break;
+                    }
+                }
             };
             DisplayLoadPanel(_loadHandle, onLoadComplete);
             if (subScene != null)

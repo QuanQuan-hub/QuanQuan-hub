@@ -11,6 +11,12 @@ namespace GamePlay.Manager
     {
         public Camera uiCamera;
         public Transform uiRoot;
+//        {
+//            get
+//            {
+//                return GRoot.inst.container.gameObject.transform;
+//}
+//        }
 
         private readonly List<FGuiViewBehaviour> _uiStacks = new();
         private readonly Dictionary<UISortingLayer, List<FGuiViewBehaviour>> _uiGroupDict = new();
