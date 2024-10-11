@@ -15,6 +15,7 @@ public class LoadPanel : FGuiViewBehaviourV2<UI_LoadPanel>
     public override void OnInit(object uiParam)
     {
         this._loadData = uiParam as LoadData;
+        this.fView.m_loadPro.max = 1f;
         this.fView.m_isLoadDone.selectedIndex = 0;
         this.fView.m_pressBtn.onClick.Add(PressContinue);
     }
@@ -29,7 +30,7 @@ public class LoadPanel : FGuiViewBehaviourV2<UI_LoadPanel>
         {
             float progress = Mathf.Clamp01(_loadData.loadHandle.progress / 0.9f); // 进度范围从0到1
 
-
+            this.fView.m_loadPro.value = progress;
             if (progress >= 1.0f)
             {
                 this.fView.m_isLoadDone.selectedIndex = 1;

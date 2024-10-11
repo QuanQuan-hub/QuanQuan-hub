@@ -27,7 +27,16 @@ namespace GamePlay.Manager
             UIConfig.defaultFont = "Default";
             //自定义Loader
             //UIObjectFactory.SetLoaderExtension(typeof(MyGLoader));
+            //todo 换成自定义的加载方式
+            UIPackage.AddPackage("FGUI/Common");
+            UIPackage.AddPackage("FGUI/Enter");
+            UIPackage.AddPackage("FGUI/Game");
+            UIPackage.AddPackage("FGUI/Load");
 
+            Common.CommonBinder.BindAll();
+            Enter.EnterBinder.BindAll();
+            Game.GameBinder.BindAll();
+            Load.LoadBinder.BindAll();
         }
         private void Init()
         {
@@ -159,6 +168,15 @@ namespace GamePlay.Manager
             uiGo.transform.localPosition = Vector3.zero;
             var uiComponent = uiGo.AddComponent(uiInfo.viewType) as FGuiViewBehaviour;
             return uiComponent;
+        }
+        protected override void OnDestroy()
+        {
+            RemovePackage();
+            base.OnDestroy();
+        }
+        private void RemovePackage()
+        {
+
         }
     }
 }
