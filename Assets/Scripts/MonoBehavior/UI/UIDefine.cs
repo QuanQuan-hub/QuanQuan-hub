@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace GamePlay.UI
 {
-
     public static class UIDefine
     {
         public class UIInfo
@@ -31,6 +30,7 @@ namespace GamePlay.UI
         //
         public static readonly UIInfo GameMainPanel = new("Game", "GameMainPanel", typeof(GameMainPanel));
         public static readonly UIInfo EnterPanel = new("Enter", "EnterPanel", typeof(EnterPanel));
+        public static readonly UIInfo LoadPanel = new("Load", "LoadPanel", typeof(LoadPanel));
     }
     public enum UISortingLayer
     {

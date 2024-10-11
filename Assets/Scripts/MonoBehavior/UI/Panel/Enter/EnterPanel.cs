@@ -1,4 +1,5 @@
 using Enter;
+using GamePlay.Manager;
 using GamePlay.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ public class EnterPanel : FGuiViewBehaviourV2<UI_EnterPanel>
     }
     private void OnClickStart()
     {
-
+        SceneManager.Instance.LoadScene("MainScne");
+        CloseSelf();
     }
     public override void OnOpened()
     {
