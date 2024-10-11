@@ -23,7 +23,7 @@ public class EnterPanel : FGuiViewBehaviourV2<UI_EnterPanel>
     }
     private void OnClickStart()
     {
-        SceneManager.Instance.LoadScene("MainScne");
+        SceneManager.Instance.LoadScene("MainScene");
         CloseSelf();
     }
     public override void OnOpened()

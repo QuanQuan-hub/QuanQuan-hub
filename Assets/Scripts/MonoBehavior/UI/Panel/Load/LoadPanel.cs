@@ -38,6 +38,8 @@ public class LoadPanel : FGuiViewBehaviourV2<UI_LoadPanel>
 
             await UniTask.Yield();
         }
+        this.fView.m_loadPro.value = this.fView.m_loadPro.max;
+        this.fView.m_isLoadDone.selectedIndex = 1;
     }
     private void PressContinue()
     {

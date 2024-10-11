@@ -23,6 +23,10 @@ namespace GamePlay.Manager
             }
             _loadHandle = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);
             _loadHandle.allowSceneActivation = allowLoadEnter;
+            _loadHandle.completed += (handle) =>
+            {
+                _loadHandle = null;
+            };
             DisplayLoadPanel(_loadHandle, onLoadComplete);
             if (subScene != null)
             {
