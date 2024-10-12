@@ -9,14 +9,13 @@ namespace GamePlay.Manager
 {
     public class UIManager : MonoSigleton<UIManager>
     {
-        public Camera uiCamera;
         public Transform uiRoot;
-//        {
-//            get
-//            {
-//                return GRoot.inst.container.gameObject.transform;
-//}
-//        }
+        //{
+        //    get
+        //    {
+        //        return GRoot.inst.container.gameObject.transform;
+        //    }
+        //}
 
         private readonly List<FGuiViewBehaviour> _uiStacks = new();
         private readonly Dictionary<UISortingLayer, List<FGuiViewBehaviour>> _uiGroupDict = new();
