@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ManagersList:
+  - {fileID: 8172512372447767369, guid: 61b1f1fb44fb56e4187831e0879c7345, type: 3}
   - {fileID: 2805922932047820867, guid: 592ec367460aea8469d3ff5dd5b6dea4, type: 3}
   - {fileID: 948831863865789929, guid: eb029d2be2f454d4a8e2052e87d89fa8, type: 3}
   - {fileID: 6391842425501597309, guid: 3b13f5412c6f9cf43903aba0e2c1309b, type: 3}

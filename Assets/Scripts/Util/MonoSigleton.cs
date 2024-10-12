@@ -28,6 +28,11 @@ public class MonoSigleton<T> : MonoBehaviour where T : MonoBehaviour
 		_instance = this as T;
 	}
 
+	public virtual void OnCreate()
+    {
+
+    }
+
 	protected virtual void OnDestroy()
 	{
 		Destroy(gameObject);

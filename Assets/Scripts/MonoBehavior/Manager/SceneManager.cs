@@ -33,6 +33,10 @@ namespace GamePlay.Manager
     }
     public class SceneManager : MonoSigleton<SceneManager>
     {
+        public override void OnCreate()
+        {
+
+        }
         public List<SubSceneCfg> subSceneMap = new();
         private AsyncOperation _loadHandle = null;
         public void LoadScene(string scene, bool allowLoadEnter = false, Action onLoadComplete = null, SubScene subScene = null)

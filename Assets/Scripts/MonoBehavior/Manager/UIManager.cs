@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YooAsset;
 
 namespace GamePlay.Manager
 {
@@ -19,11 +20,15 @@ namespace GamePlay.Manager
 
         private readonly List<FGuiViewBehaviour> _uiStacks = new();
         private readonly Dictionary<UISortingLayer, List<FGuiViewBehaviour>> _uiGroupDict = new();
+
+        public override void OnCreate()
+        {
+            AddPackage();
+            Init();
+        }
         protected override void Awake()
         {
             base.Awake();
-            AddPackage();
-            Init();
         }
         private void AddPackage()
         {
@@ -33,15 +38,17 @@ namespace GamePlay.Manager
             //自定义Loader
             //UIObjectFactory.SetLoaderExtension(typeof(MyGLoader));
             //todo 换成自定义的加载方式
-            UIPackage.AddPackage("FGUI/Common");
-            UIPackage.AddPackage("FGUI/Enter");
-            UIPackage.AddPackage("FGUI/Game");
-            UIPackage.AddPackage("FGUI/Load");
+            UIPackage.AddPackage("FGUI/Common", LoadFunc);
+            UIPackage.AddPackage("FGUI/Enter", LoadFunc);
+            UIPackage.AddPackage("FGUI/Game", LoadFunc);
+            UIPackage.AddPackage("FGUI/Load", LoadFunc);
 
             Common.CommonBinder.BindAll();
             Enter.EnterBinder.BindAll();
             Game.GameBinder.BindAll();
             Load.LoadBinder.BindAll();
+
+            ReleaseHandles();
         }
         private void Init()
         {
@@ -182,6 +189,28 @@ namespace GamePlay.Manager
         private void RemovePackage()
         {
 
+        }
+        //自定义加载方式
+        // 资源句柄列表
+        private List<AssetHandle> _handles = new List<AssetHandle>(100);
+
+        // 加载方法
+        private object LoadFunc(string name, string extension, System.Type type, out DestroyMethod method)
+        {
+            method = DestroyMethod.None; //注意：这里一定要设置为None
+            string location = $"Assets/AssetRaw/UI/_Auto/{name}{extension}";
+            var package = YooAssets.GetPackage("DefaultPackage");
+            var handle = package.LoadAssetSync(location, type);
+            _handles.Add(handle);
+            return handle.AssetObject;
+        }// 释放资源句柄列表
+        private void ReleaseHandles()
+        {
+            foreach (var handle in _handles)
+            {
+                handle.Release();
+            }
+            _handles.Clear();
         }
     }
 }
