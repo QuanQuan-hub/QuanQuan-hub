@@ -9,6 +9,7 @@ using Unity.Scenes;
 using Unity.Entities;
 using UnityEngine.SceneManagement;
 using Unity.Entities.Serialization;
+using YooAsset;
 
 namespace GamePlay.Manager
 {
@@ -38,7 +39,7 @@ namespace GamePlay.Manager
 
         }
         public List<SubSceneCfg> subSceneMap = new();
-        private AsyncOperation _loadHandle = null;
+        private SceneHandle _loadHandle = null;
         public void LoadScene(string scene, bool allowLoadEnter = false, Action onLoadComplete = null, SubScene subScene = null)
         {
             if (_loadHandle != null)
@@ -46,7 +47,8 @@ namespace GamePlay.Manager
                 Debug.Log(StringFormat.Format("已有场景加载中,场景:{0}加载失败", scene));
                 return;
             }
-            _loadHandle = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);
+            
+            _loadHandle = AssetManager.Instance.defultPacke.LoadSceneAsync($"Assets/AssetRaw/Scenes/MainScene/{scene}");
             _loadHandle.allowSceneActivation = allowLoadEnter;
             _loadHandle.completed += (handle) =>
             {

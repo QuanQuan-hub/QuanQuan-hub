@@ -6,15 +6,15 @@ using YooAsset;
 
 public class AssetManager : MonoSigleton<AssetManager>
 {
+    public ResourcePackage defultPacke;
     public override void OnCreate()
     {
         // 初始化资源系统
         YooAssets.Initialize();
         // 创建默认的资源包
-        var package = YooAssets.CreatePackage("DefaultPackage");
-        YooAssets.SetDefaultPackage(package);
+        defultPacke = YooAssets.CreatePackage("DefaultPackage");
+        YooAssets.SetDefaultPackage(defultPacke);
     }
-
 
     private void OnDestroy()
     {
